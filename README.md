@@ -19,3 +19,6 @@ YouPy is a simple yet powerful Python application that lets you download YouTube
     * Select the output format you want (MP3 or MP4).
     * Choose the destination folder where you want to save the downloaded file.
     * Click the "CONVERT" button and wait for the conversion and download process to complete.
+
+## **Note:**
+You don't have to keep clicking the the conversion options (mp3/mp4) and save file location everytime  you want to convert multiple different videos at the same time. Let's say you want to convert an mp3 file and you already specified the save file location, Just paste the link and press convert. Once that is done downloading, paste the link of the next video and press convert. Easy as that!
