@@ -12,6 +12,12 @@ YouPy is a simple yet powerful Python application that lets you download YouTube
       You have to paste and convert each link individually (future update to
       address this).
     * YouPy is currently only available for desktop platforms (Tested only on Windows).
+    
+## **pip imports:**
+    * pip install pytube
+    * pip install bs4
+    * pip install requests
+    * pip install tk
 
 ## **How to Use:**
     * Copy the link of the YT video you want to convert.
