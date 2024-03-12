@@ -5,7 +5,7 @@
 from pathlib import Path
 import re
 from bs4 import BeautifulSoup
-from pytube import YouTube
+from pytube import YouTube, Playlist
 import threading
 import requests
 # from tkinter import *
@@ -275,22 +275,28 @@ def check_valid_url(url):
         global valid_yt_url
         global yt_video_title
         global yt_filename
-        r = requests.get(url)  # random video id
+        r = requests.get(url)
         site = 'youtube.com'
         shortcut = 'youtu.be'
         if "Video unavailable" not in r.text and (site in url or shortcut):
-            # Get the YT Video Title and store it in yt_video_title variable.
-            yt_video_title = get_video_title(url)
+            # Check if the URL is a playlist
+            if any(x in url for x in ['list', 'playlist']):
+                valid_yt_url = True
+                yt_video_title = "Playlist"
+                yt_filename = "Playlist"
+            else:
+                # Get the YT Video Title and store it in yt_video_title variable.
+                yt_video_title = get_video_title(url)
 
-            # Format the YT video title and make it into a valid file name.
-            yt_filename = yt_filename_fix(yt_video_title)
+                # Format the YT video title and make it into a valid file name.
+                yt_filename = yt_filename_fix(yt_video_title)
 
-            # Output video title name
-            print(f'YouTube Video Selected: {yt_video_title}')
-            canvas.itemconfig(ready_text, text=f'{yt_video_title}')
+                # Output video title name
+                print(f'YouTube Video Selected: {yt_video_title}')
+                canvas.itemconfig(ready_text, text=f'{yt_video_title}')
 
-            # Change global variable to validate url.
-            valid_yt_url = True
+                # Change global variable to validate url.
+                valid_yt_url = True
         else:
             valid_yt_url = False
     except Exception as e:
@@ -400,15 +406,36 @@ def conversion_logic(yt_url):
             # create a file path variable with the file name in it.
             # file_path_with_name = f'{save_file_path_var}{yt_filename}'
             # print(file_path_with_name)
-
             # Do mp3 conversion
             try:
                 if selected_mp3:
-                    convert_to_mp3(yt_url)
+                    # Check if the URL is a playlist
+                    if yt_video_title == "Playlist":
+                        playlist = Playlist(yt_url)
+                        total_videos = len(playlist.videos)
+                        current_video = 1
+                        for video in playlist.videos:
+                            canvas.itemconfig(ready_text, text=f"Downloading Playlist: ({current_video}/{total_videos})")
+                            video.streams.filter(only_audio=True).first().download(output_path=save_file_path_var)
+                            current_video += 1
+                        canvas.itemconfig(ready_text, text=f"Finished Downloading Playlist!")
+                    else:
+                        convert_to_mp3(yt_url)
 
                 # Do mp4 conversion
                 elif selected_mp4:
-                    convert_to_mp4(yt_url)
+                    # Check if the URL is a playlist
+                    if yt_video_title == "Playlist":
+                        playlist = Playlist(yt_url)
+                        total_videos = len(playlist.videos)
+                        current_video = 1
+                        for video in playlist.videos:
+                            canvas.itemconfig(ready_text, text=f"Downloading Playlist: ({current_video}/{total_videos})")
+                            video.streams.filter(file_extension='mp4').get_highest_resolution().download(output_path=save_file_path_var)
+                            current_video += 1
+                        canvas.itemconfig(ready_text, text=f"Finished Downloading Playlist!")
+                    else:
+                        convert_to_mp4(yt_url)
 
                 # Otherwise No conversion type option was selected
                 else:
