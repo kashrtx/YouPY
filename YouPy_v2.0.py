@@ -415,8 +415,9 @@ def conversion_logic(yt_url):
                         total_videos = len(playlist.videos)
                         current_video = 1
                         for video in playlist.videos:
-                            canvas.itemconfig(ready_text, text=f"Downloading Playlist: ({current_video}/{total_videos})")
-                            video.streams.filter(only_audio=True).first().download(output_path=save_file_path_var)
+                            canvas.itemconfig(ready_text, text=f"Downloading Playlist: ({current_video}:{video.title}/{total_videos})")
+                            video.streams.filter(only_audio=True, mime_type='audio/mp4').first().download(output_path=save_file_path_var, 
+                                                                                                          filename=f"{video.title}.mp3")
                             current_video += 1
                         canvas.itemconfig(ready_text, text=f"Finished Downloading Playlist!")
                     else:
@@ -430,7 +431,7 @@ def conversion_logic(yt_url):
                         total_videos = len(playlist.videos)
                         current_video = 1
                         for video in playlist.videos:
-                            canvas.itemconfig(ready_text, text=f"Downloading Playlist: ({current_video}/{total_videos})")
+                            canvas.itemconfig(ready_text, text=f"Downloading Playlist: ({current_video}:{video.title}/{total_videos})")
                             video.streams.filter(file_extension='mp4').get_highest_resolution().download(output_path=save_file_path_var)
                             current_video += 1
                         canvas.itemconfig(ready_text, text=f"Finished Downloading Playlist!")
