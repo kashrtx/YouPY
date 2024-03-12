@@ -24,6 +24,6 @@ pip install tk
    5. Click the "CONVERT" button and wait for the conversion and download process to complete.
 ---
 ## **Note:**
-This converter allows you to convert multiple videos without changing the settings every time (when the app is left open). If you want to convert to a mp3 or mp4 file, for example, you only need to select the save file location and conversion option (mp3 or mp4) once. Then, you can paste the link of any video and click convert. The converter will automatically download the mp3 file to the chosen location earlier. You can repeat this process for as many videos as you want. Just paste the link and press convert for each video, It's that simple! You can also create a playlist as well to make the whole process easier for multiple videos/songs.
+#### This converter allows you to convert multiple videos without changing the settings every time (when the app is left open). If you want to convert to a mp3 or mp4 file, for example, you only need to select the save file location and conversion option (mp3 or mp4) once. Then, you can paste the link of any video and click convert. The converter will automatically download the mp3 file to the chosen location earlier. You can repeat this process for as many videos as you want. Just paste the link and press convert for each video, It's that simple! You can also create a playlist as well to make the whole process easier for multiple videos/songs.
 ---
-## NOTICE: Please use non-copyrighted content or content that you have permission to use. 
+## NOTICE: It is recommended to use non-copyrighted content or content that you have permission to use. 
