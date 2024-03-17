@@ -1,4 +1,4 @@
-# YouPY 2.0
+# YouPY
 YouPy is a simple yet powerful Python application that lets you download YouTube videos as MP3 or MP4 files to your local device. With YouPy, you can easily convert your favorite YT videos to audio or video format and save them for offline playback. YouPy is built on top of the popular PyTube library, making it easy to use and extend. Whether you're a music lover or a fan of viral videos, YouPy is the perfect tool for downloading your favorite YT content.
 ---
 ## **About:**
